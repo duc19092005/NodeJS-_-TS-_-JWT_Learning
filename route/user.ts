@@ -2,8 +2,6 @@ import {Router , Request , Response} from 'express'
 import authServices from '../services/auth/authService'
 import loginDTO from '../dto/authDto/loginDto';
 import respondStatus from '../enum/respondStatusCode';
-import jsonwebtoken from 'jsonwebtoken';
-
 
 const router = Router()
 
@@ -32,8 +30,8 @@ router.get("/getUserInfo" , (req : Request , res : Response) => {
         const roles = payload.roles
 
         res.json({
-        userId : data , 
-        roles : roles
+            userId : data , 
+            roles : roles
         })
     }
 })

@@ -1,18 +1,15 @@
 import express, { Express, Request, Response } from "express";
 import userRoute from './route/user'; // Corrected
 import authMiddleWare from "./middleWare/authMiddleWare";
+import dotenv from 'dotenv'
+dotenv.config();
 
 const app: Express = express();
 app.use(express.json())
 const PORT = 5000;
 app.use(authMiddleWare)
-const TestString: string = "abc";
 
 app.use("/user" , userRoute)
-
-app.get("/get", (req: Request, res: Response) => {
-    res.status(200).send("213123123");
-});
 
 app.listen(PORT, (error?: any) => {
     if (!error) {

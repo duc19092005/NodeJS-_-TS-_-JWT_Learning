@@ -15,8 +15,8 @@ const authMiddleWare = (req: Request, res: Response, next: NextFunction) => {
         const token = req.headers.authorization.split(' ')[1];
 
         try {
-            const secretKey = "5L3m7kW4bflKz9vaYcn4ZYNAyVZqSk85DCDkUNX+Nf4=";
-            const payload: any = jsonwebtoken.verify(token, secretKey);
+            const secretKey: string | undefined = process.env.JWT_SECRECT_KEY;
+            const payload: any = jsonwebtoken.verify(token, secretKey!);
             
             (req as any).user = payload; 
             next();
