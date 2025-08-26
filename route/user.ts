@@ -2,6 +2,7 @@ import {Router , Request , Response} from 'express'
 import authServices from '../services/auth/authService'
 import loginDTO from '../dto/authDto/loginDto';
 import respondStatus from '../enum/respondStatusCode';
+import registerDto from '../dto/authDto/registerDto';
 
 const router = Router()
 
@@ -15,10 +16,17 @@ router.post("/login" , (req : Request , res : Response) => {
 
     if(respondData != null)
     {
-        res.json(respondData)
         res.status(respondStatus.success)
+        res.json(respondData)
     }
     res.status(400)
+})
+
+router.post("/register" , async (req : Request , res : Response) => {
+    const newObject = new registerDto(req.body.userName , req.body.password)
+    const getStatus = await newAuthServicesObject.register(newObject)
+    res.status(getStatus.getResponseCode())
+    res.json(getStatus)
 })
 
 router.get("/getUserInfo" , (req : Request , res : Response) => {

@@ -3,8 +3,11 @@ import jsonwebtoken from 'jsonwebtoken'
 
 const authMiddleWare = (req: Request, res: Response, next: NextFunction) => {
     // Các đường dẫn đc bỏ qua
-    const continueURL = "/user/login"
-    if(req.originalUrl === (continueURL))
+    const continueURL : string [] = [
+        "/user/login" , 
+        "/user/register"
+    ]
+    if(continueURL.includes(req.originalUrl))
     {
        return next();
     }else {

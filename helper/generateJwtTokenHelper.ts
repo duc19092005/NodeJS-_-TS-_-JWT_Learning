@@ -2,6 +2,7 @@ import jsonwebtoken, { Secret, SignOptions } from "jsonwebtoken";
 import payloadJwtHelper from "./payloadJwtHelper";
 import { userInfo } from "os";
 
+
 // Token Service
 
 function generateJwtToken(payloadJwtHelper: payloadJwtHelper): string {
@@ -10,13 +11,13 @@ function generateJwtToken(payloadJwtHelper: payloadJwtHelper): string {
         "userId" : jwtPayload.userId ,
         "roles" : jwtPayload.roles
     }
-    const secretKey: Secret = "Your Secrect Key";
+    const secretKey: string | undefined = process.env.JWT_SECRECT_KEY;
     const options: SignOptions = {
         expiresIn: "1h",
     };
     
     // Hàm sign sẽ nhận đúng kiểu dữ liệu
-    const token = jsonwebtoken.sign(newPayload, secretKey, options);
+    const token = jsonwebtoken.sign(newPayload, secretKey!, options);
     return token;
 }
 
