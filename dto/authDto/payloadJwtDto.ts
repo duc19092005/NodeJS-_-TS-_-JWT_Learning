@@ -1,4 +1,4 @@
-import roleEnum from "../enum/roleEnum";
+import roleEnum from "../../enum/roleEnum";
 
 
 class payloadJwtHelper

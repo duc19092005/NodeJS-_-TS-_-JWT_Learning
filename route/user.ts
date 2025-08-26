@@ -14,12 +14,8 @@ router.post("/login" , (req : Request , res : Response) => {
     )
     const respondData = newAuthServicesObject.login(loginDtoObject)
 
-    if(respondData != null)
-    {
-        res.status(respondStatus.success)
-        res.json(respondData)
-    }
-    res.status(400)
+    res.status(respondData.getResponseCode())
+    res.json(respondData)
 })
 
 router.post("/register" , async (req : Request , res : Response) => {

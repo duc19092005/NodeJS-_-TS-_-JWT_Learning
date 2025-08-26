@@ -1,5 +1,5 @@
 import jsonwebtoken, { Secret, SignOptions } from "jsonwebtoken";
-import payloadJwtHelper from "./payloadJwtHelper";
+import payloadJwtHelper from "../dto/authDto/payloadJwtDto";
 import { userInfo } from "os";
 
 

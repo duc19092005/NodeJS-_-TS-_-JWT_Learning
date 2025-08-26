@@ -1,30 +1,30 @@
 class baseResponseModel<T> {
     protected statusCode : number ;
     protected message : string ;
-    protected data : T
+    protected data : T | null
 
-    constructor(statusCode : number , message : string , data : T)
+    constructor(statusCode : number , message : string , data : T | null)
     {
         this.statusCode = statusCode 
         this.message = message
         this.data = data
     }
 
-    public static successRespond<T>(data : T) : baseResponseModel<T>
+    public static successRespond<T>(message : string , data : T | null) : baseResponseModel<T>
     {
-        const newObject = new baseResponseModel(200 , "Success" , data)
+        const newObject = new baseResponseModel(200 , message , data)
         return newObject
     }
 
-    public static failureRespond<T>(message : T) : baseResponseModel<T>
+    public static failureRespond(message : string) : baseResponseModel<any>
     {
-        const newObject = new baseResponseModel(400 , "Failure" , message)
+        const newObject = new baseResponseModel(400 , message , null)
         return newObject
     }
 
-     public static notFoundRespond<T>(message : T) : baseResponseModel<T>
+     public static notFoundRespond(message : string) : baseResponseModel<any>
     {
-        const newObject = new baseResponseModel(404 , "Failure" , message)
+        const newObject = new baseResponseModel(404 , message , null)
         return newObject
     }
 

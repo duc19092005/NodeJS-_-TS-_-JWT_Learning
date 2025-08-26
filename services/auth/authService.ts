@@ -1,8 +1,7 @@
 import IAuthServices from "./IAuthService";
 import loginDTO from "../../dto/authDto/loginDto";
-import loginResponseModel from "../../respondModel/authRespond/loginRespond";
 import roleEnum from "../../enum/roleEnum";
-import payloadJwtHelper from "../../helper/payloadJwtHelper";
+import payloadJwtHelper from "../../dto/authDto/payloadJwtDto";
 import { getuid } from "process";
 import generateJwtToken from "../../helper/generateJwtTokenHelper";
 import baseResponseModel from "../../respondModel/baseRespond";
@@ -35,14 +34,14 @@ class authServices implements IAuthServices
 
             // Return Data
 
-            const returnData = baseResponseModel.successRespond(generateJwtToken1)
+            const returnData = baseResponseModel.successRespond("Đăng nhập thành công" ,generateJwtToken1 )
 
             return returnData
         }
         return baseResponseModel.failureRespond("Sai tài khoản và mật khẩu");
     }
 
-    public async register(registerDto : registerDto) : Promise<baseResponseModel<string>>
+    public async register(registerDto : registerDto) : Promise<baseResponseModel<string | null>>
     {
         // Register
         // Tiến hành create Data
@@ -55,7 +54,7 @@ class authServices implements IAuthServices
                 }
             )
 
-            return baseResponseModel.successRespond("Tạo dữ liệu thành công");
+            return baseResponseModel.successRespond("Tạo dữ liệu thành công", null);
         }catch(e : any)
         {
             console.log(e.message)
