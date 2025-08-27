@@ -3,6 +3,9 @@ import authServices from '../services/auth/authService'
 import loginDTO from '../dto/authDto/loginDto';
 import respondStatus from '../enum/respondStatusCode';
 import registerDto from '../dto/authDto/registerDto';
+import permisonMiddleware from "./../middleWare/permissonMiddleware"
+import roleEnum from '../enum/roleEnum';
+import permissonHelper from "./../helper/permissonCheckHelper"
 
 const router = Router()
 
@@ -25,7 +28,7 @@ router.post("/register" , async (req : Request , res : Response) => {
     res.json(getStatus)
 })
 
-router.get("/getUserInfo" , (req : Request , res : Response) => {
+router.get("/getUserInfo" , permissonHelper.allowOnlyAdmin() , (req : Request , res : Response) => {
     // Lấy Data ra
     const payload = (req as any).user
     if(payload.userId && payload.roles)

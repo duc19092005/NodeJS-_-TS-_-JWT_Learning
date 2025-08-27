@@ -20,8 +20,8 @@ class authServices implements IAuthServices
         )
         {
             // Generate Roles
-            const roles : roleEnum[] = [roleEnum.admin , roleEnum.customer
-                , roleEnum.staff
+            const roles : roleEnum[] = [
+                 roleEnum.staff , roleEnum.customer
             ]
             // Generate New Guid
             const guid : string = crypto.randomUUID()
