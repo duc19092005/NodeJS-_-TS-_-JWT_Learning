@@ -1,11 +1,11 @@
-import { Request, Response, NextFunction } from 'express'
+import { Request, Response, NextFunction, RequestHandler } from 'express'
 import roleEnum from './../enum/roleEnum'
 import responseCodeEnum from "./../enum/respondStatusCode"
 
 // Authorzation
 
 
-const permissionMiddleware = (allowRoles : roleEnum[]) =>{
+const permissionMiddleware = (allowRoles : roleEnum[]) : RequestHandler =>{
     // kiểm tra Roles
     return (req : Request , res : Response , next : NextFunction) =>{
         const jwtPayloadRole = 

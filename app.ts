@@ -3,14 +3,15 @@ import userRoute from './route/user'; // Corrected
 import authMiddleWare from "./middleWare/authMiddleWare";
 import dotenv from 'dotenv'
 import connectToMongoDB from "./helper/mongoDBConnection"
+import roleMiddleware from "./middleWare/roleMiddleware"
 dotenv.config();
 
 const app: Express = express();
 app.use(express.json())
 const PORT = 5000;
 
-
-app.use(authMiddleWare)
+app.use(roleMiddleware());
+app.use(authMiddleWare);
 app.use("/user" , userRoute)
 
 async function connectToMongoDBFuncition()

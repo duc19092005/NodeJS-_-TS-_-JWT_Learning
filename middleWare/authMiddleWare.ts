@@ -5,7 +5,7 @@ const authMiddleWare = (req: Request, res: Response, next: NextFunction) => {
     // Các đường dẫn đc bỏ qua
     const continueURL : string [] = [
         "/user/login" , 
-        "/user/register"
+        "/user/register" 
     ]
     if(continueURL.includes(req.originalUrl))
     {
