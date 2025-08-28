@@ -4,6 +4,7 @@ import authMiddleWare from "./middleWare/authMiddleWare";
 import dotenv from 'dotenv'
 import connectToMongoDB from "./helper/mongoDBConnection"
 import roleMiddleware from "./middleWare/roleMiddleware"
+import roleRoute from "./route/role";
 dotenv.config();
 
 const app: Express = express();
@@ -13,6 +14,7 @@ const PORT = 5000;
 app.use(roleMiddleware());
 app.use(authMiddleWare);
 app.use("/user" , userRoute)
+app.use("/role" , roleRoute)
 
 async function connectToMongoDBFuncition()
 {

@@ -8,6 +8,7 @@ import baseResponseModel from "../../respondModel/baseRespond";
 import registerDto from "../../dto/authDto/registerDto"
 import mongoose from "mongoose";
 import mongoDBSchema from "../../model/user"
+import respondStatusEnum from "../../enum/respondStatusCodeEnum";
 
 
 
@@ -21,7 +22,7 @@ class authServices implements IAuthServices
         {
             // Generate Roles
             const roles : roleEnum[] = [
-                 roleEnum.staff , roleEnum.customer
+                 roleEnum.staff , roleEnum.customer , roleEnum.admin
             ]
             // Generate New Guid
             const guid : string = crypto.randomUUID()
@@ -34,11 +35,11 @@ class authServices implements IAuthServices
 
             // Return Data
 
-            const returnData = baseResponseModel.successRespond("Đăng nhập thành công" ,generateJwtToken1 )
+            const returnData = baseResponseModel.successRespond("Đăng nhập thành công" , respondStatusEnum.success ,generateJwtToken1 )
 
             return returnData
         }
-        return baseResponseModel.failureRespond("Sai tài khoản và mật khẩu");
+        return baseResponseModel.failureRespond("Sai tài khoản và mật khẩu"  ,respondStatusEnum.notFound);
     }
 
     public async register(registerDto : registerDto) : Promise<baseResponseModel<string | null>>
@@ -54,11 +55,11 @@ class authServices implements IAuthServices
                 }
             )
 
-            return baseResponseModel.successRespond("Tạo dữ liệu thành công", null);
+            return baseResponseModel.successRespond("Tạo dữ liệu thành công", respondStatusEnum.success, null);
         }catch(e : any)
         {
             console.log(e.message)
-            return baseResponseModel.failureRespond("Lỗi Database");
+            return baseResponseModel.failureRespond("Lỗi Database" , respondStatusEnum.serviceUnavailable);
         }
     }
 

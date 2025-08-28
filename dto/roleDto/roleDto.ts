@@ -1,12 +1,10 @@
-import roleEnum from "../../enum/roleEnum"
-
 export default class roleDto{
     public roleId : string 
-    public roleName : roleEnum
+    public userId : string
 
-    constructor(roleId : string , roleName : roleEnum)
+    constructor(roleId : string , userId : string)
     {
-        this.roleId = roleId
-        this.roleName = roleName
+        this.roleId = roleId,
+        this.userId = userId
     }
 }

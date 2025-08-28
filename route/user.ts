@@ -1,7 +1,7 @@
 import {Router , Request , Response} from 'express'
 import authServices from '../services/auth/authService'
 import loginDTO from '../dto/authDto/loginDto';
-import respondStatus from '../enum/respondStatusCode';
+import respondStatus from '../enum/respondStatusCodeEnum';
 import registerDto from '../dto/authDto/registerDto';
 import permisonMiddleware from "./../middleWare/permissonMiddleware"
 import roleEnum from '../enum/roleEnum';

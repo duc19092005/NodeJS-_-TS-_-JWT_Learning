@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express'
 import roleEnum from './../enum/roleEnum'
-import responseCodeEnum from "./../enum/respondStatusCode"
+import responseCodeEnum from "../enum/respondStatusCodeEnum"
 
 // Authorzation
 
